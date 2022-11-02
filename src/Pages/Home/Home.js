@@ -1,18 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import Service from '../Service/Service';
+import React from 'react';
 import AwesomeSlider1 from './AwesomeSlider';
 import Services from './Services/Services';
-// import Carousel from './Carousel';
 
 
 const Home = () => {
-    const [services, setServices] = useState([]);
-
-    useEffect(() => {
-        fetch("Services.json")
-            .then(res => res.json())
-            .then(data => setServices(data))
-    }, []);
     return (
         <div>
             <div>
@@ -27,7 +18,7 @@ const Home = () => {
                 <Services></Services>
             </div>
 
-            
+
         </div>
     );
 };
