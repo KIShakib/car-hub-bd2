@@ -73,6 +73,9 @@ const Navbar = () => {
                     <li><Link>Services</Link></li>
                     <li><Link>Blog</Link></li>
                     <li><Link>Contact</Link></li>
+                    {
+                        user && <li><Link to="/orders">Orders</Link></li>
+                    }
                 </ul>
                 <div className="navbar-end lg:hidden">
                     <div className="form-control lg:mr-3">
