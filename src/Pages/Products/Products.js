@@ -20,7 +20,7 @@ const Products = () => {
                 <h1 className='text-3xl text-center font-bold mb-4'>Buy Our Products</h1>
                 <p className='w-1/2 mx-auto text-center'>Enjoy an entirely new level of driving experience with our in-depth selection of superior car bulbs, brake pads, spark plugs, and other automotive parts and accessories designed to keep your car running at its absolute best.</p>
             </div>
-            <div className='grid grid-cols-3'>
+            <div className='grid grid-cols-3 gap-4 my-14'>
                 {
                     products.map(product => <Product key={product._id} product={product}></Product>)
                 }

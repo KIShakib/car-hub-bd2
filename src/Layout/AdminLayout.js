@@ -4,9 +4,9 @@ import DashBoard from '../Pages/Admin/DashBoard/DashBoard';
 
 const AdminLayout = () => {
     return (
-        <div className='grid grid-cols-4'>
-            <DashBoard className="col-span-1"></DashBoard>
-            <Outlet className="col-span-3"></Outlet>
+        <div className="flex">
+            <DashBoard></DashBoard>
+            <Outlet></Outlet>
         </div>
     );
 };

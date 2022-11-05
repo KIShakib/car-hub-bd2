@@ -6,7 +6,7 @@ const Product = ({ product }) => {
     const { _id, productName, photoURL, price } = product;
     return (
         <div className="card card-compact w-96 bg-base-100 rounded-xl border-2 p-5 h-full">
-            <figure className='relative overflow-hidden transition duration-200 transform shadow-lg'><img className='h-56 rounded-lg border-r-8 border-red-600' src={photoURL} alt="Garage" /></figure>
+            <figure className='relative overflow-hidden transition duration-200 transform shadow-lg border-r-8 border-red-600'><img className='h-56 rounded-lg ' src={photoURL} alt="Garage" /></figure>
             <div className="card-body">
                 <h2 className="card-title font-mono text-2xl">{productName}</h2>
                 <div className="card-actions absolute inset-0 pt-4 transition-opacity duration-200 bg-black bg-opacity-75 opacity-0 hover:opacity-100 flex justify-center items-end">
