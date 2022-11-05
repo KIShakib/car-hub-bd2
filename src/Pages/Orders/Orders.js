@@ -13,24 +13,41 @@ const Orders = () => {
             .then(data => setOrders(data))
     }, [user?.email]);
 
-    const handleDelete = id =>{
+    const handleDelete = id => {
         const proceed = window.confirm("Are You Sure To Delete This Service?")
-        if(proceed){
+        if (proceed) {
             fetch(`http://localhost:5000/order/${id}`, {
                 method: "DELETE"
             })
-            .then(res => res.json())
-            .then(data => {
-                if(data.deletedCount){
-                    const remainingOrders = orders.filter(order => order._id !== id);
-                    setOrders(remainingOrders);
-                    toast.success("Deleted Successfully...");
-                }
-            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.deletedCount) {
+                        const remainingOrders = orders.filter(order => order._id !== id);
+                        setOrders(remainingOrders);
+                        toast.success("Deleted Successfully...");
+                    }
+                })
         }
     }
-    const handleUpdate = id =>{
-        console.log(id);
+
+    const handleUpdate = id => {
+        fetch(`http://localhost:5000/order/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({ status: 'Approved' })
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount) {
+                    const notApprovedOrder = orders.filter(order => order._id !== id);
+                    const approvedOrder = orders.find(order => order._id === id);
+                    approvedOrder.status = "Approved";
+                    const newOrders = [...notApprovedOrder, approvedOrder];
+                    setOrders(newOrders);
+                }
+            })
     }
 
     return (
@@ -115,15 +132,15 @@ const Orders = () => {
                                 </thead>
                                 <tbody>
                                     {
-                                        orders.map(order => 
-                                        <Order 
-                                        key={order._id} 
-                                        order={order}
-                                        handleDelete={handleDelete}
-                                        handleUpdate={handleUpdate}
-                                        >
+                                        orders.map(order =>
+                                            <Order
+                                                key={order._id}
+                                                order={order}
+                                                handleDelete={handleDelete}
+                                                handleUpdate={handleUpdate}
+                                            >
 
-                                        </Order>)
+                                            </Order>)
                                     }
                                 </tbody>
                             </table>

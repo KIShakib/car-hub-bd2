@@ -1,5 +1,6 @@
 import React from 'react';
 import { Blocks } from 'react-loader-spinner';
+import Products from '../Products/Products';
 import AwesomeSlider1 from './AwesomeSlider';
 import Services from './Services/Services';
 
@@ -25,10 +26,13 @@ const Home = () => {
                 />
             </div>
 
-            <div>
+            <div className='mb-40'>
                 <Services></Services>
             </div>
 
+            <div>
+                <Products></Products>
+            </div>
 
         </div>
     );

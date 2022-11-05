@@ -24,7 +24,8 @@ const Checkout = () => {
             email,
             phone,
             address,
-            message
+            message,
+            status : "Pending"
         }
         fetch("http://localhost:5000/orders", {
             method: "POST",
