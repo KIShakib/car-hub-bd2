@@ -28,8 +28,14 @@ const Navbar = () => {
                         <li><Link to="/">Home</Link></li>
                         <li><Link>About</Link></li>
                         <li><Link>Services</Link></li>
+                        <li><Link to="/productspage">Products</Link></li>
                         <li><Link>Blog</Link></li>
                         <li><Link>Contact</Link></li>
+                        {
+                            user?.email === "admin@gmail.com"
+                                ? <li><Link to="/admin">Admin</Link></li>
+                                : <li><Link to="/orders">Orders</Link></li>
+                        }
                         <li>
                             <div className='lg:hidden flex'>
                                 <FaShoppingBag></FaShoppingBag>
@@ -71,10 +77,13 @@ const Navbar = () => {
                     <li><Link to="/">Home</Link></li>
                     <li><Link>About</Link></li>
                     <li><Link>Services</Link></li>
+                    <li><Link to="/productspage">Products</Link></li>
                     <li><Link>Blog</Link></li>
                     <li><Link>Contact</Link></li>
                     {
-                        user && <li><Link to="/orders">Orders</Link></li>
+                        user?.email === "admin@gmail.com"
+                            ? <li><Link to="/admin">Admin</Link></li>
+                            : <li><Link to="/orders">Orders</Link></li>
                     }
                 </ul>
                 <div className="navbar-end lg:hidden">
@@ -120,7 +129,7 @@ const Navbar = () => {
                         : <Link to="/login" className="btn btn-outline btn-accent rounded-none btn-sm hidden lg:flex ">Appointment</Link>
                 }
             </div>
-        </div>
+        </div >
     );
 };
 

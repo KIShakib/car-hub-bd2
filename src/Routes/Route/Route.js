@@ -1,3 +1,4 @@
+import { ProviderId } from 'firebase/auth';
 import { createBrowserRouter } from 'react-router-dom';
 import Login from '../../Authentication/Login/Login';
 import SignUp from '../../Authentication/SignUp/SignUp';
@@ -10,6 +11,8 @@ import Checkout from '../../Pages/Checkout/Checkout';
 import Home from '../../Pages/Home/Home';
 import Orders from '../../Pages/Orders/Orders';
 import Products from '../../Pages/Products/Products';
+import ProductsPage from '../../Pages/ProductsPage/ProductsPage';
+import AdminRoute from '../AdminRoute/AdminRoute';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
 
 export const router = createBrowserRouter([
@@ -47,9 +50,9 @@ export const router = createBrowserRouter([
                 element: <AddProducts></AddProducts>
             },
             {
-                path: "/products",
-                element: <Products></Products>,
-                loader: fetch("http://localhost:5000/products")
+                path: "/productspage",
+                element: <ProductsPage></ProductsPage>,
+                loader: () => fetch("http://localhost:5000/products")
             }
         ]
     },
@@ -59,7 +62,7 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: "/admin/addproduct",
-                element: <AddProducts></AddProducts>
+                element: <AdminRoute><AddProducts></AddProducts></AdminRoute>
             }
         ]
     }
