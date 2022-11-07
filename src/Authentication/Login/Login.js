@@ -24,11 +24,27 @@ const Login = () => {
 
         loginUser(userEmail, userPassword)
             .then(result => {
-                console.log(result.user);
+                const user = result.user;
+                const currentUser = {
+                    email: user.email
+                }
+                console.log(user);
                 setErr("");
-                toast.success("Login Successful");
-                form.reset();
-                navigate(from, { replace: true });
+                fetch("https://car-hub-bd-server.vercel.app/jwt", {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json"
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        localStorage.setItem("car-hub-bd-tkn", data.token);
+                        toast.success("Login Successful");
+                        form.reset();
+                        navigate(from, { replace: true });
+                    })
             })
             .catch(err => {
                 setErr(err.message);
@@ -39,7 +55,23 @@ const Login = () => {
     const handleSignInWithGoogle = () => {
         signInWithGoogle()
             .then(result => {
-                toast.success("Login With Google Successfully..")
+                const user = result.user;
+                const currentUser = {
+                    email: user.email
+                }
+
+                fetch("https://car-hub-bd-server.vercel.app/jwt", {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json"
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        localStorage.setItem("car-hub-bd-tkn", data.token);
+                        toast.success("Login With Google Successfully..")
+                    })
             })
             .catch(err => {
                 toast.error(err.message.slice(10))
@@ -49,7 +81,23 @@ const Login = () => {
     const handleSignInWithGitHub = () => {
         signInWithGitHub()
             .then(result => {
-                toast.success("Login With Google Successfully..")
+                const user = result.user;
+                const currentUser = {
+                    email: user.email
+                }
+
+                fetch("https://car-hub-bd-server.vercel.app/jwt", {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json"
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        localStorage.setItem("car-hub-bd-tkn", data.token);
+                        toast.success("Login With GitHub Successfully..");
+                    })
             })
             .catch(err => {
                 toast.error(err.message.slice(10))
@@ -59,7 +107,23 @@ const Login = () => {
     const handleSignInWithFacebook = () => {
         signInWithFacebook()
             .then(result => {
-                toast.success("Login With Google Successfully..")
+                const user = result.user;
+                const currentUser = {
+                    email: user.email
+                }
+
+                fetch("https://car-hub-bd-server.vercel.app/jwt", {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json"
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        localStorage.setItem("car-hub-bd-tkn", data.token);
+                        toast.success("Login With Facebook Successfully..")
+                    })
             })
             .catch(err => {
                 toast.error(err.message.slice(10))

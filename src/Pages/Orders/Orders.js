@@ -5,18 +5,28 @@ import Order from '../Order/Order';
 
 const Orders = () => {
     const [orders, setOrders] = useState([]);
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/order?email=${user?.email}`)
-            .then(res => res.json())
+        fetch(`https://car-hub-bd-server.vercel.app/order?email=${user?.email}`, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem("car-hub-bd-tkn")}`
+            }
+        })
+            .then(res => {
+                if (res.status === 401 || res.status === 403) {
+                    toast.error(`UnAuthorized Access ${res.status}`)
+                    logOut()
+                }
+                return res.json()
+            })
             .then(data => setOrders(data))
     }, [user?.email]);
 
     const handleDelete = id => {
         const proceed = window.confirm("Are You Sure To Delete This Service?")
         if (proceed) {
-            fetch(`http://localhost:5000/order/${id}`, {
+            fetch(`https://car-hub-bd-server.vercel.app/order/${id}`, {
                 method: "DELETE"
             })
                 .then(res => res.json())
@@ -31,7 +41,7 @@ const Orders = () => {
     }
 
     const handleUpdate = id => {
-        fetch(`http://localhost:5000/order/${id}`, {
+        fetch(`https://car-hub-bd-server.vercel.app/order/${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json'

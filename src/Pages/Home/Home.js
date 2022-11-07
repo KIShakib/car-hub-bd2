@@ -3,6 +3,7 @@ import { Blocks } from 'react-loader-spinner';
 import Products from '../Products/Products';
 import AwesomeSlider1 from './AwesomeSlider';
 import Services from './Services/Services';
+import logo from "../../Assets/Image/Logo/logo.jpg"
 
 
 
@@ -10,6 +11,13 @@ import Services from './Services/Services';
 const Home = () => {
     return (
         <div>
+            <div>
+                <marquee behavior="" direction="" className="bg-red-500 rounded mb-2">
+                    <h2 className='text-3xl font-extrabold text-cyan-800 font-mono'>
+                        Car Hub BD
+                    </h2>
+                </marquee>
+            </div>
             <div>
                 <AwesomeSlider1 className="rounded-lg"></AwesomeSlider1>
             </div>

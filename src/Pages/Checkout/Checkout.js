@@ -25,9 +25,9 @@ const Checkout = () => {
             phone,
             address,
             message,
-            status : "Pending"
+            status: "Pending"
         }
-        fetch("http://localhost:5000/orders", {
+        fetch("https://car-hub-bd-server.vercel.app/orders", {
             method: "POST",
             headers: {
                 "content-type": "application/json"

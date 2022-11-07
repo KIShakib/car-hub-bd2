@@ -7,7 +7,7 @@ const Order = ({ order, handleDelete, handleUpdate }) => {
     const { serviceName, price, service, _id, status } = order;
 
     useEffect(() => {
-        fetch(`http://localhost:5000/service/${service}`)
+        fetch(`https://car-hub-bd-server.vercel.app/service/${service}`)
             .then(res => res.json())
             .then(data => {
                 setSingleService(data)

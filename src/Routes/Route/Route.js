@@ -39,7 +39,7 @@ export const router = createBrowserRouter([
             {
                 path: "/service/:id",
                 element: <PrivateRoute><Checkout></Checkout></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/service/${params.id}`)
+                loader: ({ params }) => fetch(`https://car-hub-bd-server.vercel.app/service/${params.id}`)
             },
             {
                 path: "/orders",
@@ -52,7 +52,7 @@ export const router = createBrowserRouter([
             {
                 path: "/productspage",
                 element: <ProductsPage></ProductsPage>,
-                loader: () => fetch("http://localhost:5000/products")
+                loader: () => fetch("https://car-hub-bd-server.vercel.app/products")
             }
         ]
     },
